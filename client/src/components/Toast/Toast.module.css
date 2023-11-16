@@ -1,0 +1,29 @@
+.toast {
+   padding: 1.5rem 1rem 1.5rem 1rem;
+   position: fixed;
+   align-items: center;
+   display: flex;
+   gap: 0.5rem;
+   bottom: 3rem;
+   right: 3rem;
+   border-radius: 18px;
+   box-shadow: 3px 3px 2rem rgba(0, 0, 0, 0.1);
+   transition-duration: 200ms;
+   box-sizing: border-box;
+}
+
+.success {
+    background: hsla(113, 100%, 60%, 0.2) !important;
+}
+
+.error {
+    background: hsla(0, 100%, 60%, 0.2) !important
+}
+
+.warn {
+    background: hsla(40, 100%, 60%, 0.2) !important;
+}
+
+.info {
+    background: var(--white) !important;
+}

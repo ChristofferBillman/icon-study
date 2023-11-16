@@ -1,0 +1,41 @@
+:root {
+  --border: #eaeaea;
+  --gray: #676767;
+  --black: #313131;
+  --primary: #3B97D9;
+  --white: #FAFAFA;
+  --borderHover: rgba(0, 0, 0, 0.15);
+}
+body {
+  background: var(--white);
+}
+
+h5 {
+  color: var(--gray);
+  margin: none;
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+#root {
+
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.layout-content {
+  max-width: 600px;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
