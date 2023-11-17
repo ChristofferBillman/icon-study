@@ -12,5 +12,5 @@ function Landing({children}: Props) {
     )
   }
   
-  export default Landing
+export default Landing
   

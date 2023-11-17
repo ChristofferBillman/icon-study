@@ -1,10 +1,13 @@
+import { Glyph } from "./Glyph"
+
 interface Props {
-	glyphs: JSX.Element[]
+	glyphnames: Array<[string, boolean] | [string]>
+    onCorrectPress: () => void
     cols: number
     rows: number
 }
 
-export function GlyphGrid({glyphs, rows, cols}: Props) {
+export function GlyphGrid({glyphnames, onCorrectPress, rows, cols}: Props) {
 	return (
 		<div style={{
             display: 'grid',
@@ -14,9 +17,12 @@ export function GlyphGrid({glyphs, rows, cols}: Props) {
             width: '100%',
         }}
         >
-            {glyphs.map(glyph => (
-                <div className='flex items-center justify-center '>
-                    {glyph}
+            {glyphnames.map((glyphname: [string, boolean] | [string]) => (
+                <div
+                    className='flex items-center justify-center'
+                    onClick={() => {glyphname[1] && onCorrectPress()}}
+                >
+                    <Glyph name={glyphname[0]} size={64} weight={700}/>
                 </div>
                 ))}
         </div>

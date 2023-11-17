@@ -1,4 +1,4 @@
-import { Button } from "../components/Button"
+import { Button } from "@nextui-org/react"
 import Layout from "../components/Layout"
 import useToast from "../contexts/ToastContext"
 
@@ -27,8 +27,8 @@ function PerformanceTest() {
 				flexDirection: 'column',
 				gap: '1rem'
 			}}>
-				<Button text='Starta timer' onClick={startTimer} />
-				<Button text='Stoppa timer' onClick={stopTimer} />
+				<Button onClick={startTimer}> Starta timer </Button>
+				<Button onClick={stopTimer}> Stoppa timer </Button>
 			</div>
 		</Layout>
 	)
