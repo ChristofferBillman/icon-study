@@ -18,6 +18,7 @@ const sexes = [
     {label: 'Man', value: 'man'},
     {label: 'Kvinna', value: 'woman'},
     {label: 'Annat', value: 'other'},
+    {label: 'Vill ej ange', value: 'optout'},
 ]
 
 export default function BasicInfoPage({setBasicInfo, basicInfo, email, setEmail}: Props) {

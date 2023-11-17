@@ -7,8 +7,8 @@ import BasicInfo, { initialBasicInfo } from './types/BasicInfo'
 import { useState } from 'react'
 import PerformanceTest from './pages/PerfomanceTest'
 import Onboarding from './pages/Onboarding'
-import Test from './pages/Test'
-import { Prompt } from './components/Prompt'
+import TestManager from './pages/TestManager'
+import Debrief from './pages/Debrief'
 
 function App() {
 
@@ -22,8 +22,8 @@ function App() {
 					<Route path='/' element={<Landing />} />
 					<Route path='/performanceTest' element={<PerformanceTest />} />
 					<Route path='/onboarding' element={<Onboarding />} />
-					<Route path='/test' element={<Test />} />
-					<Route path='/prompt' element={<Prompt text='Test'/>} />
+					<Route path='/test' element={<TestManager />} />
+					<Route path='/debrief' element={<Debrief />} />
 					<Route path='/collectBasicInfo' element={
 						<BasicInfoPage
 							basicInfo={basicInfo}
