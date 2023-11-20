@@ -3,16 +3,9 @@ import { useState } from "react"
 import Layout from "../components/Layout"
 import { useNavigate } from "react-router-dom"
 import useToast from "../contexts/ToastContext"
-import BasicInfo from "../types/BasicInfo"
 
 import { Button, Input, Select, SelectItem, Checkbox, Tooltip } from '@nextui-org/react'
-
-interface Props {
-    setBasicInfo: any
-    basicInfo: BasicInfo
-    email: string
-    setEmail: any
-}
+import { useDataCollectionContext, useDataCollectionSetter } from "../contexts/DataCollectionContext"
 
 const sexes = [
     {label: 'Man', value: 'man'},
@@ -21,10 +14,13 @@ const sexes = [
     {label: 'Vill ej ange', value: 'optout'},
 ]
 
-export default function BasicInfoPage({setBasicInfo, basicInfo, email, setEmail}: Props) {
+export default function BasicInfoPage() {
 
     const navigate = useNavigate()
     const toast = useToast()
+
+    const { basicInfo, email } = useDataCollectionContext()
+    const { setBasicInfo, setEmail } = useDataCollectionSetter()
 
     const [wantsNotify, setWantsNotify] = useState(false)
 

@@ -16,7 +16,7 @@ function RoundTwoConfirmation({onContinue}: Props) {
         <Button
           onClick={onContinue}
         >
-          Gå vidare & skicka resultat
+          Granska & skicka resultat
         </Button>
     </Layout>
   )

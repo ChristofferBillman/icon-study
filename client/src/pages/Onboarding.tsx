@@ -13,7 +13,9 @@ function Onboarding() {
         <p>
             Du kommer att presenteras med en text som beskriver den ikon som du så fort som möjligt skall klicka på.
             Efter 5 sekunder så försvinner texten, och ett rutnät av ikoner visas. Du skall klicka på den ikon du tror hör
-            samman med texten. Detta kommer att upprepas 10 gånger. Du kommer nu att få testa detta.
+            samman med texten.
+            
+            Detta kommer att upprepas 10 gånger. Du kommer nu att få testa detta.
         </p>
         <Button
           onClick={() => navigate('/test')}

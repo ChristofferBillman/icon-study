@@ -27,9 +27,7 @@ app.listen(port, () => console.log(`Icon study server is running on port ${port}
 
 app.get(BASEURL + '/test', (req: Request, res: Response) => res.send('Hello: ' + req.query.name))
 
-app.use(cookieParser())
-
-BaseAPI(app, BASEURL + '/page')
+BaseAPI(app, BASEURL)
 
 export default app
 

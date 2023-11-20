@@ -6,13 +6,16 @@ import TestRoundConfirmation from "./TestRoundConfirmation"
 import RoundTwoConfirmation from "./RoundTwoConfirmation"
 import RoundOneConfirmation from "./RoundOneConfirmation copy"
 import { useNavigate } from "react-router-dom"
+import { useDataCollectionContext, useDataCollectionSetter } from "../contexts/DataCollectionContext"
 
 function TestManager() {
 
     const toast = useToast()
     const navigate = useNavigate()
 
-    const [results, setResults] = useState<TestResult[]>([])
+    const { result } = useDataCollectionContext()
+    const { setResult } = useDataCollectionSetter()
+
     const [currentRound, setCurrentRound] = useState(0)
     const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -24,7 +27,7 @@ function TestManager() {
 
     const onComplete = (partResult: TestResult) => {
         console.log(partResult)
-        setResults([...results, partResult])
+        setResult([...result, partResult])
         toast('test ' + currentRound + ' completed', 'success')
         setCurrentRound(currentStep => currentStep + 1)
         setShowConfirmation(true)

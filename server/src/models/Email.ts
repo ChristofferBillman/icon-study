@@ -8,4 +8,4 @@ const emailSchema: Schema<IEmailNotify> = new Schema({
     email: { type: String, required: true },
 })
 
-export default mongoose.model<IEmailNotify>('SurveyResponse', emailSchema)
+export default mongoose.model<IEmailNotify>('EmailNotify', emailSchema)
