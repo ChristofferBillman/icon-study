@@ -16,7 +16,7 @@ const dataCollectionContextProvider = createContext({
 })
 
 // eslint-disable-next-line 
-const dataCollectionContextSetter = createContext({setResult: (newState: any) => {}, setBasicInfo: (newState: any) => {}, setEmail: (newState: any) => {}})
+const dataCollectionContextSetter = createContext({setResult: (_newState: any) => {}, setBasicInfo: (_newState: any) => {}, setEmail: (_newState: any) => {}})
 
 interface Props {
 	children: JSX.Element[] | JSX.Element

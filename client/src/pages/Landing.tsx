@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 function Landing() {
 
   const navigate = useNavigate()
+
   return (
     <Layout>
         <h1>Välkommen</h1>

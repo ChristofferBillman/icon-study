@@ -28,8 +28,10 @@ export default function BaseAPI(app: Application, BASEURL: string) {
         try {
             const responsedata = req.body
 
+            console.log(req)
+
             const surveryResponse: ISurveryResponse = new SurveyResponse({
-                responsedata
+                ...responsedata
             })
 
             await surveryResponse.save()

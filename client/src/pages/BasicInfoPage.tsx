@@ -44,7 +44,7 @@ export default function BasicInfoPage() {
         }
 
         if(!wantsNotify) {
-            setEmail('')
+            setEmail('not_provided')
         }
         toast('Giltigt formulär.', 'success')
         navigate('/onboarding')
