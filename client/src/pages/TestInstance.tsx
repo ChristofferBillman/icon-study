@@ -1,7 +1,7 @@
 import { GlyphGrid } from "../components/GlyphGrid"
 import { useEffect, useState } from 'react'
 import { Prompt } from '../components/Prompt'
-import TestResult from "../types/TestResult"
+import TestResult, { TestResultError } from "../types/TestResult"
 
 interface Props {
   grids: Array<Array<[string, boolean] | [string]>>
@@ -9,6 +9,16 @@ interface Props {
   weight: number
   onComplete: (results: TestResult) => void
 }
+
+let result: TestResult = {
+  iconWeight: 0,
+  recognitionTimes: [],
+  errors: []
+}
+
+// Used for measuring the reaction time.
+let timeAtGridShown: number
+let timeAtCorrectPress: number
 
 function TestInstance({grids, prompts, weight, onComplete}: Props) {
 
@@ -18,26 +28,51 @@ function TestInstance({grids, prompts, weight, onComplete}: Props) {
   // First time is a special case, since the prompt is supposed to be shown,
   // but dissapear after 3s.
   useEffect(() => {
-    setTimeout(() => setShowPrompt(false), 3000)
+    setTimeout(() => {
+      setShowPrompt(false)
+      timeAtGridShown = performance.now()
+    }, 1000)
   }, [])
 
   const handleWrongPress = () => {
-    // Add this as an error to the test results.
+    // Find index of the current icon.
+    const index = result.errors.findIndex((err: TestResultError) => err.iconName == prompts[currentStep])
+    // If it is -1, there is no entry for the current icon.
+    if(index == -1) {
+      result.errors.push({iconName: prompts[currentStep], numberOfErrors: 1})
+      return
+    }
+    // Otherwise there is one, increment it.
+    result.errors[index].numberOfErrors++
   }
 
   const handleCorrectPress = () => {
+    timeAtCorrectPress = performance.now()
+
+    result.recognitionTimes.push(timeAtCorrectPress - timeAtGridShown)
+    console.log(result.recognitionTimes)
+
+    // Not strictly neccessary but doing it just to be safe xd.
+    timeAtCorrectPress = 0
+    timeAtGridShown = 0
+
     if(currentStep == grids.length-1) {
+      result.iconWeight = weight
       // Pass results to parent via onComplete.
-      onComplete({
-        iconWeight: weight,
-        recognitionTimes: [245,324,340],
-        errors: [{iconName: 'test', numberOfErrors: 2}]
-      })
+      onComplete(result)
+      result = {
+        iconWeight: 0,
+        recognitionTimes: [],
+        errors: []
+      }
       return
     }
     setCurrentStep(currentStep => (currentStep + 1) % 10)
     setShowPrompt(true)
-    setTimeout(() => setShowPrompt(false), 1000)
+    setTimeout(() => {
+      setShowPrompt(false)
+      timeAtGridShown = performance.now()
+    }, 1000)
   }
 
   return (

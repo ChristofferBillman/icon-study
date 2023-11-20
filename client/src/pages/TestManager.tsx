@@ -23,7 +23,7 @@ function TestManager() {
     ]
 
     const onComplete = (partResult: TestResult) => {
-        console.log(results)
+        console.log(partResult)
         setResults([...results, partResult])
         toast('test ' + currentRound + ' completed', 'success')
         setCurrentRound(currentStep => currentStep + 1)
