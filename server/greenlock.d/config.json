@@ -14,5 +14,13 @@
     "serverKeyType": "RSA-2048",
     "subscriberEmail": "christoffer.billman@gmail.com"
   },
-  "sites": []
+  "sites": [
+    {
+      "subject": "iconstudy.christofferbillman.se",
+      "altnames": [
+        "iconstudy.christofferbillman.se"
+      ],
+      "renewAt": 1704323605700
+    }
+  ]
 }
