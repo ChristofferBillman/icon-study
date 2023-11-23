@@ -1,17 +1,16 @@
 import TestInstance from "./TestInstance"
-import useToast from "../contexts/ToastContext"
 import TestResult from "../types/TestResult"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import TestRoundConfirmation from "./TestRoundConfirmation"
 import RoundTwoConfirmation from "./RoundTwoConfirmation"
 import RoundOneConfirmation from "./RoundOneConfirmation copy"
 import { useNavigate } from "react-router-dom"
 import { useDataCollectionContext, useDataCollectionSetter } from "../contexts/DataCollectionContext"
+import useToast from "../contexts/ToastContext"
 
 function TestManager() {
-
-    const toast = useToast()
     const navigate = useNavigate()
+    const toast = useToast()
 
     const { result } = useDataCollectionContext()
     const { setResult } = useDataCollectionSetter()
@@ -19,16 +18,37 @@ function TestManager() {
     const [currentRound, setCurrentRound] = useState(0)
     const [showConfirmation, setShowConfirmation] = useState(false)
 
+    const [startsWithBold, setStartsWithBold] = useState(false)
+
+    useEffect(() => {
+        fetch('/api/startsWithBold', {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(res => {
+			if(!res.ok) {
+				toast('Något gick snett.', 'error')
+                navigate('/')
+				return
+			}
+			res.json().then(json => setStartsWithBold(json))
+		})
+		.catch(() => {
+			toast('Något gick snett. Kontrollera din internetuppkoppling.', 'error')
+            navigate('/')
+		})
+    }, [])
+
     const completeTest = [
         {grids: testSetGlyphs, prompts: testSetPrompts, weight: 500},
-        {grids: set1Glyphs,    prompts: set1Prompts, weight: 700},
-        {grids: set2Glyphs,    prompts: set2Prompts, weight: 200}
+        {grids: set1Glyphs,    prompts: set1Prompts, weight: startsWithBold ? 700 : 200},
+        {grids: set2Glyphs,    prompts: set2Prompts, weight: startsWithBold ? 200 : 700}
     ]
 
     const onComplete = (partResult: TestResult) => {
-        console.log(partResult)
         setResult([...result, partResult])
-        toast('test ' + currentRound + ' completed', 'success')
         setCurrentRound(currentStep => currentStep + 1)
         setShowConfirmation(true)
     }

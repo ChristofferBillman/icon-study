@@ -25,7 +25,6 @@ export default function BasicInfoPage() {
     const [wantsNotify, setWantsNotify] = useState(false)
 
     const setField = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        console.log(Number.isInteger(basicInfo.age))
         setBasicInfo({
             ...basicInfo,
             [e.target.name]: e.target.value
@@ -46,7 +45,6 @@ export default function BasicInfoPage() {
         if(!wantsNotify) {
             setEmail('not_provided')
         }
-        toast('Giltigt formulär.', 'success')
         navigate('/onboarding')
     }
     
@@ -110,6 +108,7 @@ export default function BasicInfoPage() {
                     name='email'
                     isRequired={true}
                     description='Din mejladress kommer ej att kopplas till övrig information du angett eller dina testresultat.'
+                    onChange={e => setEmail(e.target.value)}
                 /> :
                 <div style={{height: '76px'}}/>}
 

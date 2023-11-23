@@ -28,8 +28,6 @@ export default function BaseAPI(app: Application, BASEURL: string) {
         try {
             const responsedata = req.body
 
-            console.log(req)
-
             const surveryResponse: ISurveryResponse = new SurveyResponse({
                 ...responsedata
             })
@@ -37,6 +35,23 @@ export default function BaseAPI(app: Application, BASEURL: string) {
             await surveryResponse.save()
 
             res.status(201).send('Created')
+        } catch (error) {
+            console.log(error)
+            res.status(500).send('An error occurred')
+        }
+    })
+
+    app.get(BASEURL + '/startsWithBold',  async (req, res) => {
+        try {
+            
+            const count = await SurveyResponse.count()
+
+            if(count % 2 == 0) {
+                res.status(200).json(true)
+            } else {
+                res.status(200).json(false)
+            }
+
         } catch (error) {
             console.log(error)
             res.status(500).send('An error occurred')

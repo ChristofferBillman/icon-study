@@ -1,6 +1,6 @@
 import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react"
 import Layout from "../components/Layout"
-import { useDataCollectionContext } from "../contexts/DataCollectionContext"
+import { useDataCollectionContext, useDataCollectionSetter } from "../contexts/DataCollectionContext"
 import { useNavigate } from "react-router-dom"
 import useToast from "../contexts/ToastContext"
 
@@ -11,6 +11,7 @@ function Debrief() {
 	const toast = useToast()
 	
 	const { result, basicInfo, email } = useDataCollectionContext()
+	const { setResult ,setBasicInfo, setEmail } = useDataCollectionSetter()
 
 	const handleSubmit = () => {
 		fetch('/api/submitResults', {
@@ -26,7 +27,12 @@ function Debrief() {
 				toast('Något gick snett.', 'error')
 				return
 			}
-			//navigate()
+			setResult(undefined)
+			setBasicInfo(undefined)
+			navigate('/done')
+		})
+		.catch(() => {
+			toast('Något gick snett. Kontrollera din internetuppkoppling.', 'error')
 		})
 
 		if(email != 'not_provided') {
@@ -37,6 +43,13 @@ function Debrief() {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				}
+			})
+			.then(() => {
+				setEmail(undefined)
+				console.log('Email skickades!')
+			})
+			.catch(() => {
+				toast('Något gick snett. Kontrollera din internetuppkoppling.', 'error')
 			})
 		}
 	}
