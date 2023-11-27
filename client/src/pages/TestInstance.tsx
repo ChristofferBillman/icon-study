@@ -31,7 +31,7 @@ function TestInstance({grids, prompts, weight, onComplete}: Props) {
     setTimeout(() => {
       setShowPrompt(false)
       timeAtGridShown = performance.now()
-    }, 1000)
+    }, 3000)
   }, [])
 
   const handleWrongPress = () => {
@@ -49,7 +49,7 @@ function TestInstance({grids, prompts, weight, onComplete}: Props) {
   const handleCorrectPress = () => {
     timeAtCorrectPress = performance.now()
 
-    result.recognitionTimes.push(timeAtCorrectPress - timeAtGridShown)
+    result.recognitionTimes.push(Math.round(timeAtCorrectPress - timeAtGridShown))
     console.log(result.recognitionTimes)
 
     // Not strictly neccessary but doing it just to be safe xd.
@@ -72,7 +72,7 @@ function TestInstance({grids, prompts, weight, onComplete}: Props) {
     setTimeout(() => {
       setShowPrompt(false)
       timeAtGridShown = performance.now()
-    }, 1000)
+    }, 3000)
   }
 
   return (

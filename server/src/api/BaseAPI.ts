@@ -1,6 +1,7 @@
 import { Application } from 'express'
 import SurveyResponse, { ISurveryResponse } from '../models/SurveyResponse'
 import Email, { IEmailNotify } from '../models/Email'
+import sanitize from 'mongo-sanitize'
 
 export default function BaseAPI(app: Application, BASEURL: string) {
 
@@ -13,7 +14,9 @@ export default function BaseAPI(app: Application, BASEURL: string) {
         try {
             const { email } = req.body
 
-            const savedEmail: IEmailNotify = new Email({email})
+            const sanitized = sanitize(email)
+
+            const savedEmail: IEmailNotify = new Email({email: sanitized})
 
             await savedEmail.save()
             
@@ -27,6 +30,8 @@ export default function BaseAPI(app: Application, BASEURL: string) {
     app.post(BASEURL + '/submitResults',  async (req, res) => {
         try {
             const responsedata = req.body
+
+            sanitize(responsedata)
 
             const surveryResponse: ISurveryResponse = new SurveyResponse({
                 ...responsedata

@@ -81,7 +81,7 @@ function Debrief() {
 
 	const errors = []
 
-	for(let i = 0; i < 2; i++) {
+	for(let i = 0; i < result.length; i++) {
 		for(let j = 0; j < result[i].errors.length; j++) {
 			errors.push(result[i].errors[j])
 		}

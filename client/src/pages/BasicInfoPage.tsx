@@ -45,6 +45,7 @@ export default function BasicInfoPage() {
         if(!wantsNotify) {
             setEmail('not_provided')
         }
+        setBasicInfo({...basicInfo, screenResolution: { h: window.innerHeight, w: window.innerWidth }})
         navigate('/onboarding')
     }
     
