@@ -157,6 +157,8 @@ function testResultsCard(result: typeof data[0]): JSX.Element {
     const weight200 = result.testResult[1].iconWeight == 200 ? result.testResult[1].recognitionTimes : result.testResult[2].recognitionTimes
     const weight700 = result.testResult[1].iconWeight == 700 ? result.testResult[1].recognitionTimes : result.testResult[2].recognitionTimes
 
+    const didBoldFirst = result.testResult[1].iconWeight == 700
+
     return (
         <Card>
             <CardBody style={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
@@ -173,6 +175,9 @@ function testResultsCard(result: typeof data[0]): JSX.Element {
                 <div>
                     <h3>Skillnad (200 - 700)</h3>
                     {Math.round(average(weight200) - average(weight700))} ms
+                </div>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <p>(Gjorde {didBoldFirst ? 'tjock' : 'tunn'} först)</p>
                 </div>
             </CardBody>
         </Card>
