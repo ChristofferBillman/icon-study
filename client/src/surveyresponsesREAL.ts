@@ -562,6 +562,115 @@ const data = [{
       "errors": []
     }
   ]
+},{
+  "screenResolution": {
+    "h": 678,
+    "w": 1371
+  },
+  "age": 52,
+  "sex": "man",
+  "testResult": [
+    {
+      "iconWeight": 500,
+      "recognitionTimes": [
+        6339,
+        3917,
+        4422,
+        4826,
+        8189
+      ],
+      "errors": []
+    },
+    {
+      "iconWeight": 700,
+      "recognitionTimes": [
+        3902,
+        3824,
+        8807,
+        2743,
+        1658,
+        3207,
+        1858,
+        7907,
+        5024,
+        6507
+      ],
+      "errors": [
+        {
+          "iconName": "Sedlar",
+          "numberOfErrors": 1
+        }
+      ]
+    },
+    {
+      "iconWeight": 200,
+      "recognitionTimes": [
+        3437,
+        1641,
+        2258,
+        5674,
+        2123,
+        2274,
+        8324,
+        7376,
+        1557,
+        10478
+      ],
+      "errors": []
+    }
+  ]
+},{
+  "screenResolution": {
+    "h": 727,
+    "w": 1194
+  },
+  "age": 21,
+  "sex": "woman",
+  "testResult": [
+    {
+      "iconWeight": 500,
+      "recognitionTimes": [
+        12255,
+        2458,
+        2459,
+        2717,
+        1600
+      ],
+      "errors": []
+    },
+    {
+      "iconWeight": 200,
+      "recognitionTimes": [
+        2027,
+        1149,
+        2867,
+        2043,
+        766,
+        1251,
+        858,
+        900,
+        1248,
+        2317
+      ],
+      "errors": []
+    },
+    {
+      "iconWeight": 700,
+      "recognitionTimes": [
+        1479,
+        850,
+        2074,
+        1343,
+        1791,
+        924,
+        3768,
+        1500,
+        1549,
+        10138
+      ],
+      "errors": []
+    }
+  ]
 }]
 
 export default data

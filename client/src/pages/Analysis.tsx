@@ -103,48 +103,50 @@ function Analysis() {
                 </Table>
             </div>
 
-            <div>
-                <h2>Könsfördelning</h2>
-                <Table aria-label="table">
-                    <TableHeader>
-                        <TableColumn key="genderman" align={'start'}>
-                            Andel män
-                        </TableColumn>
-                        <TableColumn key="genderwoman" align={'start'}>
-                            Andel kvinnor
-                        </TableColumn>
-                        <TableColumn key="genderother" align={'start'}>
-                            Andel annat kön
-                        </TableColumn>
-                        <TableColumn key="genderoptout" align={'start'}>
-                            Andel vill ej ange kön
-                        </TableColumn>
-                    </TableHeader>
-                    <TableBody items={data}>
-                        <TableRow key={Math.round(Math.random() * 100)}>
-                            <TableCell>{getRatioOfGender('man', data)}</TableCell>
-                            <TableCell>{getRatioOfGender('woman', data)}</TableCell>
-                            <TableCell>{getRatioOfGender('other', data)}</TableCell>
-                            <TableCell>{getRatioOfGender('optout', data)}</TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </div>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '50px' }}>
+                <div>
+                    <h2>Könsfördelning</h2>
+                    <Table aria-label="table">
+                        <TableHeader>
+                            <TableColumn key="genderman" align={'start'}>
+                                Andel män
+                            </TableColumn>
+                            <TableColumn key="genderwoman" align={'start'}>
+                                Andel kvinnor
+                            </TableColumn>
+                            <TableColumn key="genderother" align={'start'}>
+                                Andel annat kön
+                            </TableColumn>
+                            <TableColumn key="genderoptout" align={'start'}>
+                                Andel vill ej ange kön
+                            </TableColumn>
+                        </TableHeader>
+                        <TableBody items={data}>
+                            <TableRow key={Math.round(Math.random() * 100)}>
+                                <TableCell>{getRatioOfGender('man', data)}</TableCell>
+                                <TableCell>{getRatioOfGender('woman', data)}</TableCell>
+                                <TableCell>{getRatioOfGender('other', data)}</TableCell>
+                                <TableCell>{getRatioOfGender('optout', data)}</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </div>
 
-            <div>
-                <h2>Ålder</h2>
-                <Table aria-label="table">
-                    <TableHeader>
-                        <TableColumn key="avgage" align={'start'}>
-                            Genonsnittlig ålder
-                        </TableColumn>
-                    </TableHeader>
-                    <TableBody items={data}>
-                        <TableRow key={Math.round(Math.random() * 100)}>
-                            <TableCell>{average(data.map(respondent => respondent.age))}</TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
+                <div>
+                    <h2>Ålder</h2>
+                    <Table aria-label="table">
+                        <TableHeader>
+                            <TableColumn key="avgage" align={'start'}>
+                                Genonsnittlig ålder
+                            </TableColumn>
+                        </TableHeader>
+                        <TableBody items={data}>
+                            <TableRow key={Math.round(Math.random() * 100)}>
+                                <TableCell>{average(data.map(respondent => respondent.age))}</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
         </div>
     )
