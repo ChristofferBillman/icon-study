@@ -1,4 +1,5 @@
 import GetDatabaseConnection from './Database'
+import AnalysisAPI from './api/AnalysisAPI'
 import BaseAPI from './api/BaseAPI'
 
 import express, { Request, Response, Application } from 'express'
@@ -21,5 +22,6 @@ app.listen(port, () => console.log(`Icon study server is running on port ${port}
 app.get(BASEURL + '/test', (req: Request, res: Response) => res.send('Hello: ' + req.query.name))
 
 BaseAPI(app, BASEURL)
+AnalysisAPI(app, BASEURL + '/analysis')
 
 export default app;
