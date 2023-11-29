@@ -2,13 +2,15 @@ interface Props {
 	name: string
     size: number
     weight?: number
+    color?: string
 }
 
-export function Glyph({name, size, weight}: Props) {
+export function Glyph({name, size, weight, color = 'black'}: Props) {
 	return (
 		<span
             className='material-symbols-outlined'
             style={{
+                color: color,
                 fontSize: size,
                 cursor: 'pointer',
                 userSelect: 'none',

@@ -1,13 +1,16 @@
-import { Card, CardBody, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
+import { Button, Card, CardBody, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
 import data from '../surveyresponsesREAL'
 import { useCallback } from 'react';
 
 import Statistics from 'statistics.js'
+import { TestResultError } from '../types/TestResult';
+import { Glyph } from '../components/Glyph';
 
 const columns = [
     { name: "Kön", uid: "sex" },
     { name: "Ålder", uid: "age" },
-    { name: "Resultat", uid: 'testResult' }
+    { name: "Resultat", uid: 'testResult' },
+    { name: "Åtgärd", uid: 'actions' }
 ]
 
 function Analysis() {
@@ -22,16 +25,22 @@ function Analysis() {
                 return <p>{result.sex}</p>
             case "testResult":
                 return testResultsCard(result)
+            case "actions":
+                return testResultActions(result)
             default:
                 return <p>{cellValue}</p>
         }
     }, [])
 
-    const ttestResult = ttest(diffData(data))
+    const ttestResultTwoSample = ttestTwoSample(getColumn(data, 700), getColumn(data, 200))
+
+    console.log('700: ' + JSON.stringify(getColumn(data,700)))
+    console.log('200: ' + JSON.stringify(getColumn(data, 200)))
 
     return (
         <div style={{ padding: '100px', minHeight: '100vh', gap: '50px', display: 'flex', flexDirection: 'column' }}>
             <h1>Datadumpen</h1>
+            <h2>n={data.length}</h2>
 
             <div>
                 <h2>Reaktionstider</h2>
@@ -45,7 +54,7 @@ function Analysis() {
                     </TableHeader>
                     <TableBody items={data}>
                         {(item) => (
-                            <TableRow key={Math.round(Math.random() * 100)}>
+                            <TableRow key={Math.round(Math.random() * 1000)}>
                                 {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                             </TableRow>
                         )}
@@ -58,17 +67,17 @@ function Analysis() {
                     <TableColumn key="gsdfsdaf" align={'start'}>
                         Genomsnitt skillnad (200 - 700)
                     </TableColumn>
-                    <TableColumn key="gsdfsdaf" align={'start'}>
+                    <TableColumn key="gsdfssdaf" align={'start'}>
                         Genomsnitt 200
                     </TableColumn>
-                    <TableColumn key="gsdfsdaf" align={'start'}>
+                    <TableColumn key="gsdfs89daf" align={'start'}>
                         Genomsnitt 700
                     </TableColumn>
 
                 </TableHeader>
                 <TableBody items={data}>
-                    <TableRow key={Math.round(Math.random() * 100)}>
-                        <TableCell>{Math.round(average(diffData(data)))} ms</TableCell>
+                    <TableRow key={Math.round(Math.random() * 1000)}>
+                        <TableCell>{(average(getColumn(data, 200)) - average(getColumn(data, 700))).toFixed(0)} ms</TableCell>
                         <TableCell>{Math.round(average(getColumn(data, 200)))} ms</TableCell>
                         <TableCell>{Math.round(average(getColumn(data, 700)))} ms</TableCell>
                     </TableRow>
@@ -76,28 +85,28 @@ function Analysis() {
             </Table>
 
             <div>
-                <h2>T-test skillnad reaktionstider</h2>
+                <h2>T-test (two sample) skillnad reaktionstider</h2>
                 <Table aria-label="table">
                     <TableHeader>
-                        <TableColumn key="gsdaf" align={'start'}>
+                        <TableColumn key="gsdasffff" align={'start'}>
                             T-statistika
                         </TableColumn>
                         <TableColumn key="genderwomasdfn" align={'start'}>
                             Frihetsgrader
                         </TableColumn>
                         <TableColumn key="genderodther" align={'start'}>
-                            pOneSided
+                            P-värde "one sided"
                         </TableColumn>
                         <TableColumn key="genderopdtout" align={'start'}>
-                            pTwoSided
+                            P-värde "two sided"
                         </TableColumn>
                     </TableHeader>
                     <TableBody items={data}>
-                        <TableRow key={Math.round(Math.random() * 100)}>
-                            <TableCell>{ttestResult.tStatistic.toFixed(3)}</TableCell>
-                            <TableCell>{ttestResult.degreesOfFreedom}</TableCell>
-                            <TableCell>{ttestResult.pOneSided.toFixed(3)}</TableCell>
-                            <TableCell>{ttestResult.pTwoSided.toFixed(3)}</TableCell>
+                        <TableRow key={Math.round(Math.random() * 1000)}>
+                            <TableCell>{ttestResultTwoSample.tStatistic.toFixed(5)}</TableCell>
+                            <TableCell>{ttestResultTwoSample.degreesOfFreedom}</TableCell>
+                            <TableCell>{ttestResultTwoSample.pOneSided.toFixed(5)}</TableCell>
+                            <TableCell>{ttestResultTwoSample.pTwoSided.toFixed(5)}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
@@ -122,7 +131,7 @@ function Analysis() {
                             </TableColumn>
                         </TableHeader>
                         <TableBody items={data}>
-                            <TableRow key={Math.round(Math.random() * 100)}>
+                            <TableRow key={Math.round(Math.random() * 1000)}>
                                 <TableCell>{getRatioOfGender('man', data)}</TableCell>
                                 <TableCell>{getRatioOfGender('woman', data)}</TableCell>
                                 <TableCell>{getRatioOfGender('other', data)}</TableCell>
@@ -141,7 +150,7 @@ function Analysis() {
                             </TableColumn>
                         </TableHeader>
                         <TableBody items={data}>
-                            <TableRow key={Math.round(Math.random() * 100)}>
+                            <TableRow key={Math.round(Math.random() * 1000)}>
                                 <TableCell>{average(data.map(respondent => respondent.age))}</TableCell>
                             </TableRow>
                         </TableBody>
@@ -154,8 +163,8 @@ function Analysis() {
 
 function testResultsCard(result: typeof data[0]): JSX.Element {
 
-    const weight200 = result.testResult[1].iconWeight == 200 ? result.testResult[1].recognitionTimes : result.testResult[2].recognitionTimes
-    const weight700 = result.testResult[1].iconWeight == 700 ? result.testResult[1].recognitionTimes : result.testResult[2].recognitionTimes
+    const weight200 = result.testResult[1].iconWeight == 200 ? result.testResult[1] : result.testResult[2]
+    const weight700 = result.testResult[1].iconWeight == 700 ? result.testResult[1] : result.testResult[2]
 
     const didBoldFirst = result.testResult[1].iconWeight == 700
 
@@ -164,17 +173,28 @@ function testResultsCard(result: typeof data[0]): JSX.Element {
             <CardBody style={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
                 <div>
                     <h3>Genomsnitt 200</h3>
-                    {Math.round(average(weight200))} ms
+                    {Math.round(average(weight200.recognitionTimes))} ms
+                    {errorSummary(weight200.errors)}
+                </div>
+
+                <div>
+                    <h3>Fel (200)</h3>
+                    {errorSummary(weight200.errors)}
                 </div>
 
                 <div>
                     <h3>Genomsnitt 700</h3>
-                    {Math.round(average(weight700))} ms
+                    {Math.round(average(weight700.recognitionTimes))} ms
+                </div>
+
+                <div>
+                    <h3>Fel (700)</h3>
+                    {errorSummary(weight700.errors)}
                 </div>
 
                 <div>
                     <h3>Skillnad (200 - 700)</h3>
-                    {Math.round(average(weight200) - average(weight700))} ms
+                    {Math.round(average(weight200.recognitionTimes) - average(weight700.recognitionTimes))} ms
                 </div>
                 <div style={{display: 'flex', alignItems: 'center'}}>
                     <p>(Gjorde {didBoldFirst ? 'tjock' : 'tunn'} först)</p>
@@ -184,31 +204,30 @@ function testResultsCard(result: typeof data[0]): JSX.Element {
     )
 }
 
-const average = (array: any[]) => array.reduce((a: any, b: any) => a + b) / array.length;
-
-/**
- * 
- * @param d The entire dataset
- * @returns The difference between all observations of the test with weight 200 and weight 700 (200 - 700).
- */
-function diffData(d: typeof data) {
-
-    const allDiffs = []
-
-    for (let i = 0; i < d.length; i++) {
-        const respondent = d[i]
-
-        const weight200 = respondent.testResult[1].iconWeight == 200 ? respondent.testResult[1].recognitionTimes : respondent.testResult[2].recognitionTimes
-        const weight700 = respondent.testResult[1].iconWeight == 700 ? respondent.testResult[1].recognitionTimes : respondent.testResult[2].recognitionTimes
-
-        const diff = substractvector(weight200, weight700)
-        allDiffs.push(diff)
-    }
-
-    return allDiffs.flat()
+function errorSummary(errs: TestResultError[]) {
+    return (
+        <div>
+            {errs.map(err => (
+                <div>
+                    <p>{err.iconName}: {err.numberOfErrors}</p>
+                </div>
+            ))}
+        </div>
+    )
 }
 
+function testResultActions(result: typeof data[0]) {
+    return (
+        <Button isIconOnly color='default' aria-label="Like">
+            <Glyph name='delete' size={32} weight={400} color='rgb(255,50,50)'/>
+        </Button>    
+    )
+}
+
+const average = (array: any[]) => array.reduce((a: any, b: any) => a + b) / array.length;
+
 function getColumn(d: typeof data, weight: number) {
+    if(!(weight == 200 || weight == 700)) throw new Error('Gave non-200 or 700 value to getColumn.')
     const arr = []
     for (let i = 0; i < d.length; i++) {
         const respondent = d[i]
@@ -217,12 +236,6 @@ function getColumn(d: typeof data, weight: number) {
         arr.push(col)
     }
     return arr.flat()
-}
-
-function substractvector(vector1: number[], vector2: number[]) {
-    if (vector1.length != vector2.length) throw new Error('Vectors are not the same length. Cannot subtract.')
-
-    return vector1.map((e, i) => e - vector2[i])
 }
 
 function getRatioOfGender(gender: 'man' | 'woman' | 'other' | 'optout', d: typeof data) {
@@ -243,12 +256,14 @@ function getRatioOfGender(gender: 'man' | 'woman' | 'other' | 'optout', d: typeo
     return counts[gender] / (counts.man + counts.woman + counts.other + counts.optout)
 }
 
-function ttest(column: number[]) {
+function ttestTwoSample(thick: number[], thin: number[]) {
 
-    const values: { time: number }[] = column.map(time => { return { time } })
+    const values: { thin: number, thick: number}[] = []
 
-    const stats = new Statistics(values, { time: 'metric' })
-    return stats.studentsTTestOneSample('time', 0)
+    thick.forEach((value, index) => values.push({thin: thin[index], thick: value}))
+
+    const stats = new Statistics(values, {thin: 'metric', thick: 'metric' })
+    return stats.studentsTTestTwoSamples('thin','thick', {dependent: true})
 }
 
 export default Analysis
