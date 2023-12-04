@@ -85,12 +85,10 @@ const data = [{
       "recognitionTimes": [
         9141,
         1000,
-        10590,
         2017,
         2631,
         4079,
         1567,
-        13698,
         5194,
         4709
       ],
@@ -110,12 +108,10 @@ const data = [{
       "recognitionTimes": [
         2836,
         2124,
-        1382,
         1579,
         1291,
         2380,
         1578,
-        5798,
         2460,
         2146
       ],
@@ -156,7 +152,6 @@ const data = [{
         2530,
         6356,
         1446,
-        13623
       ],
       "errors": [
         {
@@ -177,7 +172,6 @@ const data = [{
         1503,
         1036,
         2413,
-        4527
       ],
       "errors": []
     }
@@ -209,8 +203,7 @@ const data = [{
       "recognitionTimes": [
         1771,
         2161,
-        1038,
-        1038,
+        11043,
         1038,
         1198,
         983,
@@ -231,7 +224,6 @@ const data = [{
         2504,
         974,
         2411,
-        4117,
         2621,
         2771,
         996,
@@ -389,7 +381,6 @@ const data = [{
         2505,
         4756,
         2332,
-        3847,
         4819,
         2640
       ],
@@ -405,7 +396,6 @@ const data = [{
         2199,
         1931,
         5120,
-        4659,
         5174,
         6205
       ],
@@ -556,7 +546,6 @@ const data = [{
       "iconWeight": 200,
       "recognitionTimes": [
         6293,
-        4184,
         2077,
         2492,
         885,
@@ -577,7 +566,6 @@ const data = [{
       "iconWeight": 700,
       "recognitionTimes": [
         2033,
-        678,
         1159,
         1932,
         1605,
@@ -617,7 +605,6 @@ const data = [{
       "recognitionTimes": [
         3902,
         3824,
-        8807,
         2743,
         1658,
         3207,
@@ -638,7 +625,6 @@ const data = [{
       "recognitionTimes": [
         3437,
         1641,
-        2258,
         5674,
         2123,
         2274,
@@ -744,7 +730,6 @@ const data = [{
         11364,
         878,
         3398,
-        12233
       ],
       "errors": [
         {
@@ -765,7 +750,6 @@ const data = [{
         9993,
         8964,
         2747,
-        20671
       ],
       "errors": [
         {
@@ -968,7 +952,6 @@ const data = [{
         2008,
         2067,
         5580,
-        1430,
         1084,
         2115,
         1797,
@@ -984,7 +967,6 @@ const data = [{
         2576,
         3716,
         2514,
-        3083,
         2034,
         1896,
         2230,
@@ -996,6 +978,73 @@ const data = [{
         {
           "iconName": "Telefon",
           "numberOfErrors": 1
+        }
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "6567325d53b9ae35fd9b7ff5"
+  },
+  "screenResolution": {
+    "h": 724,
+    "w": 982
+  },
+  "age": 24,
+  "sex": "woman",
+  "testResult": [
+    {
+      "iconWeight": 500,
+      "recognitionTimes": [
+        3480,
+        1818,
+        83,
+        2249,
+        1263
+      ],
+      "errors": []
+    },
+    {
+      "iconWeight": 700,
+      "recognitionTimes": [
+        2113,
+        2025,
+        207,
+        96254,
+        116,
+        2418,
+        126823
+      ],
+      "errors": [
+        {
+          "iconName": "Sedlar",
+          "numberOfErrors": 1
+        },
+        {
+          "iconName": "Volleyboll",
+          "numberOfErrors": 7
+        }
+      ]
+    },
+    {
+      "iconWeight": 200,
+      "recognitionTimes": [
+        1685,
+        134661,
+        420,
+        146094,
+        759,
+        158095,
+        1494
+      ],
+      "errors": [
+        {
+          "iconName": "Tangentbord",
+          "numberOfErrors": 5
+        },
+        {
+          "iconName": "Gem",
+          "numberOfErrors": 7
         }
       ]
     }
@@ -1112,6 +1161,66 @@ const data = [{
   ]
 },{
   "_id": {
+    "$oid": "65675a5c53b9ae35fd9b8005"
+  },
+  "screenResolution": {
+    "h": 1003,
+    "w": 1920
+  },
+  "age": 25,
+  "sex": "man",
+  "testResult": [
+    {
+      "iconWeight": 500,
+      "recognitionTimes": [
+        1182,
+        1211,
+        447,
+        3610,
+        5256
+      ],
+      "errors": []
+    },
+    {
+      "iconWeight": 700,
+      "recognitionTimes": [
+        833,
+        2158,
+        2880,
+        93,
+        400,
+        2767,
+        3629,
+        799
+      ],
+      "errors": []
+    },
+    {
+      "iconWeight": 200,
+      "recognitionTimes": [
+        4968,
+        130836,
+        7815,
+        34829,
+        13758,
+        3317,
+        198,
+        1444
+      ],
+      "errors": [
+        {
+          "iconName": "Helikopter",
+          "numberOfErrors": 8
+        },
+        {
+          "iconName": "Cykel",
+          "numberOfErrors": 1
+        }
+      ]
+    }
+  ]
+},{
+  "_id": {
     "$oid": "6567693553b9ae35fd9b800a"
   },
   "screenResolution": {
@@ -1135,7 +1244,6 @@ const data = [{
     {
       "iconWeight": 700,
       "recognitionTimes": [
-        9988,
         2471,
         4168,
         967,
@@ -1156,7 +1264,6 @@ const data = [{
     {
       "iconWeight": 200,
       "recognitionTimes": [
-        2835,
         899,
         2350,
         787,
@@ -1196,7 +1303,6 @@ const data = [{
       "iconWeight": 200,
       "recognitionTimes": [
         2166,
-        5214,
         4809,
         2929,
         1960,
@@ -1212,7 +1318,6 @@ const data = [{
       "iconWeight": 700,
       "recognitionTimes": [
         3864,
-        5316,
         2914,
         6793,
         4134,
@@ -1228,61 +1333,6 @@ const data = [{
           "numberOfErrors": 1
         }
       ]
-    }
-  ]
-},{
-  "_id": {
-    "$oid": "6567741f53b9ae35fd9b8012"
-  },
-  "screenResolution": {
-    "h": 719,
-    "w": 1071
-  },
-  "age": 23,
-  "sex": "other",
-  "testResult": [
-    {
-      "iconWeight": 500,
-      "recognitionTimes": [
-        1753,
-        1246,
-        2182,
-        4233,
-        1914
-      ],
-      "errors": []
-    },
-    {
-      "iconWeight": 700,
-      "recognitionTimes": [
-        2994,
-        2401,
-        3115,
-        1664,
-        1266,
-        1715,
-        2116,
-        3817,
-        5565,
-        2665
-      ],
-      "errors": []
-    },
-    {
-      "iconWeight": 200,
-      "recognitionTimes": [
-        1710,
-        1899,
-        1982,
-        2999,
-        2065,
-        1849,
-        3466,
-        3998,
-        1414,
-        2482
-      ],
-      "errors": []
     }
   ]
 },{

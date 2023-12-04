@@ -72,19 +72,6 @@ function TestManager() {
 }
 
 export default TestManager
-
-const set1Prompts: Array<string> = [
-    'Alarmklocka',
-    'Bakterie',
-    'Sedlar',
-    'Sax',
-    'Flygplan',
-    'Volleyboll',
-    'Fönster',
-    'Bokmärke',
-    'Paket',
-    'Resväska'
-  ]
   
 const set1Glyphs: Array<Array<[string, boolean] | [string]>> = [
     [
@@ -251,6 +238,19 @@ const set2Glyphs: Array<Array<[string, boolean] | [string]>> =
         [ "public" ], [ "light" ], [ "wine_bar" ], [ "syringe" ], [ "keyboard" ]
     ]
 ]
+
+const set1Prompts: Array<string> = [
+    'Alarmklocka',
+    'Bakterie',
+    'Sedlar',
+    'Sax',
+    'Flygplan',
+    'Volleyboll',
+    'Fönster',
+    'Bokmärke',
+    'Paket',
+    'Resväska'
+  ]
 
 
 const set2Prompts: Array<string> = [
